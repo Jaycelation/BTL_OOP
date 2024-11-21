@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do Task Flow</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="nav-container">
+    <h1 class="logo">Todo</h1>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#" id="home-link">HOME</a></li>
+        <li><a href="#dashboard">DASHBOARD</a></li>
+        <li><a href="#post-task">POST TASK</a></li>
+        <li><a href="#" id="logout-link">LOGOUT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="welcome-section">
+    <h2>Welcome to To-Do Task Flow</h2>
+    <p>Manage your tasks efficiently and stay on top of your goals.</p>
+  </section>
+
+  <section class="create-task">
+    <h3>Create a New Task</h3>
+    <form id="task-form" class="task-form">
+      <label for="task-name">Task Name</label>
+      <input type="text" id="task-name" name="task-name" placeholder="Enter task name" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" placeholder="Enter task description" required></textarea>
+
+      <label for="due-date">Due Date</label>
+      <input type="date" id="due-date" name="due-date" required>
+
+      <label for="priority">Priority</label>
+      <select id="priority" name="priority" required>
+        <option value="0">Low</option>
+        <option value="1">Medium</option>
+        <option value="2">High</option>
+      </select>
+
+      <label for="status">Status</label>
+      <select id="status" name="status" required>
+        <option value="0">Pending</option>
+        <option value="1">Completed</option>
+      </select>
+
+      <button type="submit" class="btn">Add Task</button>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2024 To-Do Task Flow. All rights reserved.</p>
+</footer>
+
+<script src="logout.js"></script>
+<script src="tasks.js"></script>
+</body>
+</html>

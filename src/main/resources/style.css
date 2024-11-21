@@ -1,0 +1,110 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+.header {
+    background-color: #3f51b5;
+    padding: 10px 20px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #d1c4e9;
+}
+
+/* Main Section */
+.welcome-section {
+    padding: 20px;
+    text-align: center;
+    background: #e3f2fd;
+}
+
+.create-task {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.create-task h3 {
+    margin-bottom: 20px;
+    color: #3f51b5;
+}
+
+.create-task label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.create-task input,
+.create-task select,
+.create-task button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.create-task button {
+    background-color: #3f51b5;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.create-task button:hover {
+    background-color: #303f9f;
+}
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #3f51b5;
+    color: #ffffff;
+}
