@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="../css/reset.css">
     <!-- styles -->
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/manager.css">
+    <link rel="stylesheet" href="../css/search.css">
+    <!-- Thêm vào phần head -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Thêm vào phần head của file HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,10 +47,11 @@
         opacity: 1;
     }
 }
+
     </style>
 </head>
-<body>
-    <!-- Header giống home.html -->
+<body style="overflow: auto;">
+    
     <header class="header fixed">
         <div class="main-content">
             <div class="body">
@@ -71,7 +78,7 @@
                         <div class="sub-menu">
                             <div class="user-info">
                                 <img class="user-pics-info" src="../assets/images/userdefault.png" alt="avt">
-                                <h2 class="user-name-info" id="user-name">User</h2>
+                                <h2 class="user-name-info" id="user-name" style="font-weight: 600;"></h2>
                             </div>
                             <hr>
                             <a href="profile.html" class="menu-section">
@@ -108,7 +115,13 @@
         <div class="task-container">
             <!-- Task Controls -->
             <div class="task-controls">
-                <button class="add-task-btn" onclick="showAddTaskForm()">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="add-task-btn" onclick="window.showAddTaskForm()">
                     <i class="fas fa-plus"></i> Add New Task
                 </button>
                 <div class="task-filters">
@@ -130,13 +143,21 @@
             <!-- Task List -->
             <div class="task-list" id="taskList">
                 <!-- Tasks will be added here dynamically -->
+            </div> 
+
+            <div id="tasksContainer" class="tasks-container">
+                <!-- Tasks sẽ được thêm vào đây động bằng JavaScript -->
+            </div>
+
+            <div class="task-item" onclick="viewTaskDetail('${task.id}')">
+                <!-- Nội dung task -->
             </div>
         </div>
 
         <!-- Add Task Modal -->
         <div id="addTaskModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closeAddTaskForm()">&times;</span>
+                <span class="close" onclick="window.closeAddTaskForm()">&times;</span>
                 <h2>Add New Task</h2>
                 <form id="addTaskForm">
                     <div class="form-group">
@@ -163,8 +184,40 @@
                 </form>
             </div>
         </div>
-    </main>
 
+        <!-- Modal Chỉnh sửa Task -->
+        <div id="editTaskModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>Chỉnh sửa công việc</h2>
+                <form id="editTaskForm" onsubmit="handleEditTask(event)">
+                    <input type="hidden" id="editTaskId">
+                    <div class="form-group">
+                        <label for="editTaskTitle">Tiêu đề</label>
+                        <input type="text" id="editTaskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskDescription">Mô tả</label>
+                        <textarea id="editTaskDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskDueDate">Ngày</label>
+                        <input type="date" id="editTaskDueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskPriority">Độ ưu tiên</label>
+                        <select id="editTaskPriority" required>
+                            <option value="0">Thấp</option>
+                            <option value="1">Trung bình</option>
+                            <option value="2">Cao</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
     <script src="../js/manager.js"></script>
 </body>
 </html>
