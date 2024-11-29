@@ -53,16 +53,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function loadTaskDetails(taskId) {
     try {
         const userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        //console.log(userInfo);
         const response = await fetch(`http://localhost:8080/api/v1/tasks/${taskId}`, {
             headers: {
                 'Authorization': `Bearer ${userInfo.accessToken}`,
                 'Content-Type': 'application/json'
             }
         });
-
         const data = await response.json();
+        alert(data.data);
         if (data.status === 200) {
             const task = data.data;
+            //console.log(task);
             displayTaskDetails(task);
             populateEditForm(task);
         } else {
@@ -74,24 +76,55 @@ async function loadTaskDetails(taskId) {
     }
 }
 
+// function displayTaskDetails(task) {
+//     // Các phần hiện có
+//     document.getElementById('taskTitle').textContent = task.title;
+//     document.getElementById('taskDescription').textContent = task.description;
+//     document.getElementById('taskDueDate').textContent = formatDate(task.date);
+//     document.getElementById('taskPriority').textContent = getPriorityLabel(task.priority);
+//     document.getElementById('taskStatus').textContent = task.status === 1 ? 'Hoàn thành' : 'Đang thực hiện';
+//
+//     // Hiển thị thông tin người được giao
+//     const assigneeElement = document.querySelector('.assignee-name');
+//     const assigneeEmailElement = document.querySelector('.assignee-email');
+//
+//     if (task.assignee) {
+//         assigneeElement.textContent = task.assignee.name || task.assignee.username;
+//         assigneeEmailElement.textContent = task.assignee.email || '';
+//     } else {
+//         assigneeElement.textContent = 'Chưa phân công';
+//         assigneeEmailElement.textContent = '';
+//     }
+// }
 function displayTaskDetails(task) {
-    // Các phần hiện có
-    document.getElementById('taskTitle').textContent = task.title;
-    document.getElementById('taskDescription').textContent = task.description;
-    document.getElementById('taskDueDate').textContent = formatDate(task.date);
-    document.getElementById('taskPriority').textContent = getPriorityLabel(task.priority);
-    document.getElementById('taskStatus').textContent = task.status === 1 ? 'Hoàn thành' : 'Đang thực hiện';
+    const taskTitleElement = document.getElementById('taskTitle');
+    console.log(task);
+    // console.log(taskTitleElement);
+    if (taskTitleElement) {
+        taskTitleElement.textContent = task.title;
+    }
 
-    // Hiển thị thông tin người được giao
-    const assigneeElement = document.querySelector('.assignee-name');
-    const assigneeEmailElement = document.querySelector('.assignee-email');
-    
-    if (task.assignee) {
-        assigneeElement.textContent = task.assignee.name || task.assignee.username;
-        assigneeEmailElement.textContent = task.assignee.email || '';
-    } else {
-        assigneeElement.textContent = 'Chưa phân công';
-        assigneeEmailElement.textContent = '';
+    const taskDescriptionElement = document.getElementById('taskDescription');
+    if (taskDescriptionElement) {
+        taskDescriptionElement.textContent = task.description;
+    }
+    console.log(taskDescriptionElement);
+    const taskDueDateElement = document.getElementById('taskDueDate');
+    if (taskDueDateElement) {
+        taskDueDateElement.textContent = formatDate(task.date);
+    }
+
+    const taskPriorityElement = document.getElementById('taskPriority');
+    if (taskPriorityElement) {
+        taskPriorityElement.textContent = getPriorityLabel(task.priority);
+        taskPriorityElement.setAttribute('data-priority', task.priority);
+    }
+    console.log(taskPriorityElement);
+
+    const taskStatusElement = document.getElementById('taskStatus');
+    if (taskStatusElement) {
+        taskStatusElement.textContent = task.status === 1 ? 'Hoàn thành' : 'Đang thực hiện';
+        taskStatusElement.className = task.status === 1 ? 'status-completed' : 'status-pending';
     }
 }
 
